@@ -1,0 +1,10 @@
+import pandas as pd
+
+file_path = r'C:\Users\Mujeeb Bello\Desktop\DATA ANALYSIS\Project 1\amazon.csv'
+df = pd.read_csv(file_path)
+
+df['dup_count']= df.groupby('product_id').cumcount()+1
+#counts how many time each product_id has appeared so far
+
+df['product_id_updated'] = df['product_id'].where(df['dup_count'] == 1, df['product_id'] + '-' + df['dup_count'].astype(str))
+df.to_csv(r'C:\Users\Mujeeb Bello\Desktop\DATA ANALYSIS\Project 1\amazon_final.csv')
