@@ -1,0 +1,17 @@
+df['rating_count'] =df['rating_count'].astype(str).str.replace(',', '', regex = False).str.strip()
+df['rating_count'] = pd.to_numeric(df['rating_count'], errors = 'coerce')
+df['rating_count'] = df['rating_count'].fillna(0).astype(int)
+# first i converted to string to easily remove commas and strip, then i converted back to number (int), finally i filled NaN (missing values) with 0 and confirmed the datatype is int 
+
+min_val = df['rating_count'].min()
+max_val = df['rating_count'].max()
+ # 4 points = 3 intervals
+bins = np.linspace(min_val, max_val, 4)
+grouping = ['LOW', 'MEDIUM', 'HIGH']
+
+df['rating_bin'] = pd.cut(
+df['rating_count'],
+bins=bins,
+labels=grouping,
+include_lowest=True
+)
