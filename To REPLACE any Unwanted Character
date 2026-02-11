@@ -1,0 +1,16 @@
+df['discounted_price']= df['discounted_price'].str.replace(r'[^\d.]', '', regex = True)
+df['discounted_price']= pd.to_numeric(df['discounted_price'], errors = 'coerce')
+
+df['actual_price']= df['actual_price'].str.replace(r'[^\d.]', '', regex = True)
+df['actual_price']= pd.to_numeric(df['actual_price'], errors = 'coerce')
+
+
+
+# understanding r'[^\d.]'
+# as you know r  makes it will allow code \d
+# ^ this means Not or Expect
+# \d this is shortcut that represent any digit from 0 to 9 (0-9)
+# . the dot after \d means decimal places
+# so combined means replace everything that is Not a number and Not a decimal with ''
+#regex = False #means look for the exact string you typed. best to remove commas
+#regex = True #means look for a pattern described by your symbol. used for shortcuts like \d
