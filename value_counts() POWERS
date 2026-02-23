@@ -1,0 +1,3 @@
+# To find the most occuring word in a column
+word= df['Customer_Review'].str.lower().str.split().explode().value_counts().index[6]
+# print(word)
