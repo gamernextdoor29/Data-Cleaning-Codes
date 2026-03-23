@@ -1,0 +1,2 @@
+missing_data=df.columns[df.isnull().any()]
+print(missing_data)
